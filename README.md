@@ -7,7 +7,15 @@
 -   The official SDK is cloned into the Docker image, see [Dockerfile](Dockerfile) for details
 -   Check out the examples in [src/](src/)
 -   Utilize existing code for an own project or start with a basic example
--   Having Docker in place, the project can be built with a single command
+-   Having Docker in place, the projects can be built with a single command
+
+## Features
+
+| feature  | example                                    | info                        | Pico               | Pico W             |
+| -------- | ------------------------------------------ | --------------------------- | ------------------ | ------------------ |
+| blink    | [src/main_blink.c](src/main_blink.c)       | Hello world blink example   | :heavy_check_mark: | :heavy_check_mark: |
+| debounce | [src/main_debounce.c](src/main_debounce.c) | Button debouncer            | :heavy_check_mark: | :heavy_check_mark: |
+| ws2812   | [src/main_ws2812.c](src/main_ws2812.c)     | Basic ws2812 light controls | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Kick-start
 
@@ -67,4 +75,6 @@ docker run --rm -it -v ${PWD}:/code rpico
 ```
 ## License
 
-The source code in this repository is licensed under the [MIT license](LICENSE.txt).
+-   The source code in this repository is licensed under the [MIT license](LICENSE.txt) (if not stated otherwise).
+-   Thirdparty components:
+    -   [src/ws2812.pio](src/ws2812.pio) (license in file)

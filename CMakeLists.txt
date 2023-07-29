@@ -55,3 +55,21 @@ if (PICO_CYW43_SUPPORTED)
 endif()
 
 pico_add_extra_outputs(debounce)
+
+#
+# ws2812 example
+#
+add_executable(ws2812
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/main_ws2812.c
+)
+
+pico_generate_pio_header(ws2812
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/ws2812.pio
+)
+
+target_link_libraries(ws2812
+  pico_stdlib
+  hardware_pio
+)
+
+pico_add_extra_outputs(ws2812)
