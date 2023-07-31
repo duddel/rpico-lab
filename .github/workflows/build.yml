@@ -14,4 +14,4 @@ jobs:
       - name: Build Docker image
         run: docker build -t rpico .
       - name: Build project
-        run: docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build.bash ${{ pico_board }}
+        run: docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build.bash ${{ matrix.pico_board }}
