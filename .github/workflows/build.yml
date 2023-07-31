@@ -3,6 +3,9 @@ on: push
 
 jobs:
   build_pico:
+    strategy:
+      matrix:
+        pico_board: ["pico", "pico_w"]
     name: Build Pico
     runs-on: ubuntu-22.04
     steps:
@@ -11,15 +14,4 @@ jobs:
       - name: Build Docker image
         run: docker build -t rpico .
       - name: Build project
-        run: docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build.bash
-
-  build_pico_w:
-    name: Build Pico W
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build Docker image
-        run: docker build -t rpico .
-      - name: Build project
-        run: docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build_w.bash
+        run: docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build.bash ${{ pico_board }}
