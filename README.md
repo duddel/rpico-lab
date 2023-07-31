@@ -11,11 +11,11 @@
 
 ## Features
 
-| feature  | example                                    | info                        | Pico               | Pico W             |
-| -------- | ------------------------------------------ | --------------------------- | ------------------ | ------------------ |
-| blink    | [src/main_blink.c](src/main_blink.c)       | Hello world blink example   | :heavy_check_mark: | :heavy_check_mark: |
-| debounce | [src/main_debounce.c](src/main_debounce.c) | Button debouncer            | :heavy_check_mark: | :heavy_check_mark: |
-| ws2812   | [src/main_ws2812.c](src/main_ws2812.c)     | Basic ws2812 light controls | :heavy_check_mark: | :heavy_check_mark: |
+| Feature  | Example                                    | Info                        | Tested on boards |
+| -------- | ------------------------------------------ | --------------------------- | ---------------- |
+| blink    | [src/main_blink.c](src/main_blink.c)       | Hello world blink example   | `pico`, `pico_w` |
+| debounce | [src/main_debounce.c](src/main_debounce.c) | Button debouncer            | `pico`, `pico_w` |
+| ws2812   | [src/main_ws2812.c](src/main_ws2812.c)     | Basic ws2812 light controls | `pico`, `pico_w` |
 
 ## Kick-start
 
@@ -27,19 +27,17 @@ A Docker installation and basic Docker knowledge is required.
 docker build -t rpico .
 ```
 
-2.  Build the examples via Docker with one of these commands:
+2.  Build the examples via Docker with one of these commands. Replace `<pico_board>` with the desired board to build for, such as `pico` or `pico_w`.
 
 ```bash
 # Bash
-docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build.bash   # Pico
-docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build_w.bash # Pico W
+docker run --rm -v $(pwd):/code -w /code rpico /bin/bash ./build.bash <pico_board>
 
 # Powershell
-docker run --rm -v ${PWD}:/code -w /code rpico /bin/bash ./build.bash   # Pico
-docker run --rm -v ${PWD}:/code -w /code rpico /bin/bash ./build_w.bash # Pico W
+docker run --rm -v ${PWD}:/code -w /code rpico /bin/bash ./build.bash <pico_board>
 ```
 
-3.  Drop any UF2 binary from `build/` directory onto the Pico following the official documentation.
+3.  Drop any UF2 binary from `build_<pico_board>/` directory onto the Pico following the official documentation.
 
 ## Advanced usage
 
@@ -58,10 +56,10 @@ The above should suffice for simple building of the examples. Here are some more
 
 ```bash
 # Bash
-docker run --rm -v $(pwd):/code -w /code rpico /bin/bash -c "mkdir -p build && cd build && cmake .. && make"
+docker run --rm -v $(pwd):/code -w /code rpico /bin/bash -c "mkdir -p build && cd build && cmake -DPICO_BOARD=pico .. && make"
 
 # Powershell
-docker run --rm -v ${PWD}:/code -w /code rpico /bin/bash -c "mkdir -p build && cd build && cmake .. && make"
+docker run --rm -v ${PWD}:/code -w /code rpico /bin/bash -c "mkdir -p build && cd build && cmake -DPICO_BOARD=pico .. && make"
 ```
 
 **Start Docker container with an interactive shell:**
